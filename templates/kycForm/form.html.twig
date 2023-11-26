@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>
+                    Hi {{ app.user.email }} ! We have some questions for you :
+                </h1>
+            </div>
+            <div class="col-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Gender :</strong>
+                        {{ app.user.gender }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Type :</strong>
+                        {{ app.user.type }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Country :</strong>
+                        {{ app.user.country }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Iban :</strong>
+                        {{ app.user.iban }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                {{ form_row(form, {'label' : false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
