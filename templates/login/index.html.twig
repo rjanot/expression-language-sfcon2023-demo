@@ -14,7 +14,11 @@
                 <form action="{{ path('app_login') }}" method="post">
                     <div class="form-group pb-2">
                         <label for="username">Email address</label>
-                        <input type="email" class="form-control" id="username" placeholder="Enter email (user1@example.com)" name="_username" value="{{ last_username }}">
+                        <select id="username" class="form-select" name="_username">
+                            <option value="user1@example.com">user1@example.com</option>
+                            <option value="user2@example.com">user2@example.com</option>
+                            <option value="user3@example.com">user3@example.com</option>
+                        </select>
                     </div>
                     <div class="form-group pb-2">
                         <label for="password">Password</label>
