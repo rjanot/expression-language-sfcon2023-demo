@@ -27,11 +27,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('form') }}">Home</a>
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'form' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ path('form') }}">Form</a>
+                        </li>
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'ast-questions' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ path('ast-questions') }}">AST</a>
                         </li>
                         {% if app.user %}
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                             </li>
                         {% endif %}
@@ -40,7 +43,7 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
-        <footer class="position-fixed w-100 mb-4" style="bottom:0">
+        <footer class="position-fixed w-100 mb-4" style="bottom:0; background: white; z-index: 10000000">
             <hr>
             <p class="text-center">
                 Demo for SymfonyCon 2023 : <a href="https://rjanot.github.io/expression-language-sfcon2023/">ExpressionLanguage : Beyond the framework</a>

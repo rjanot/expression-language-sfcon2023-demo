@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" style="margin-bottom: 120px">
+        <div class="row">
+            <div class="col-12">
+                <h1>
+                    AST
+                </h1>
+            </div>
+            {% for question in questions %}
+                <div class="col-12">
+                    <h2>{{ question['question'].question() }}</h2>
+                </div>
+                <div class="col-4" style="font-family: 'Courier New'">
+                    {{ question['question'].conditionAlgorithm() }}
+                </div>
+                <div class="col-8">
+                    {{ dump(question['ast']) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
