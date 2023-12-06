@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\Symfony\ExpressionLanguageProvider;
+namespace App\Infrastructure\Symfony\ExpressionFunctionProviders;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;

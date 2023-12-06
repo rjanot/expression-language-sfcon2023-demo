@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Kyc\Repository;
 
+use App\Domain\DynamicAlgorithm\Enum\AlgorithmEvaluationContext;
 use App\Domain\Kyc\Entity\Question;
 use App\Domain\User\Entity\User;
 use App\Infrastructure\DynamicAlgorithm\Evaluator\SimpleAlgorithmEvaluator;
@@ -39,6 +40,7 @@ class QuestionRepository extends ServiceEntityRepository
     public function isRelevant(Question $question, User $user): bool
     {
         return $this->algorithmEvaluator->evaluate(
+            AlgorithmEvaluationContext::Question,
             $question->getConditionAlgorithm(),
             [
                 'question' => $this->normalizer->normalize($question),

@@ -12,10 +12,6 @@
                 }
             </style>
         {% endblock %}
-
-        {% block javascripts %}
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        {% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
@@ -33,6 +29,9 @@
                         <li class="nav-item {{ app.request.attributes.get('_route') == 'ast-questions' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ path('ast-questions') }}">AST</a>
                         </li>
+                        <li class="nav-item {{ app.request.attributes.get('_route') == 'question-management' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ path('question-management') }}">Questions management</a>
+                        </li>
                         {% if app.user %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
@@ -43,12 +42,16 @@
             </div>
         </nav>
         {% block body %}{% endblock %}
-        <footer class="position-fixed w-100 mb-4" style="bottom:0; background: white; z-index: 10000000">
+        <footer class="position-fixed w-100" style="bottom:0; background: white; z-index: 10000000">
             <hr>
             <p class="text-center">
                 Demo for SymfonyCon 2023 : <a href="https://rjanot.github.io/expression-language-sfcon2023/">ExpressionLanguage : Beyond the framework</a>
             </p>
         </footer>
+
+        {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        {% endblock %}
 
     </body>
 </html>

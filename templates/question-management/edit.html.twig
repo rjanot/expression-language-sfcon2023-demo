@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div class="container" style="margin-bottom: 120px">
+        <div class="row">
+            {{ form_start(form) }}
+                <div class="col-6">
+                    {{ form_row(form.question) }}
+                </div>
+                <div class="col-12">
+                    {{ form_label(form.conditionAlgorithm) }}
+                </div>
+                <div class="col-12 form-control p-0 mb-3">
+                    {{ form_widget(form.conditionAlgorithm) }}
+                </div>
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js" integrity="sha512-OeZ4Yrb/W7d2W4rAMOO0HQ9Ro/aWLtpW9BUSR2UOWnSV2hprXLkkYnnCGc9NeLUxxE4ZG7zN16UuT1Elqq8Opg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://codemirror.net/5/addon/hint/show-hint.js"></script>
+
+    <script>
+        function hint(cm) {
+            const cursor = cm.getCursor();
+            var start = cursor.ch, end = cursor.ch;
+            return {
+                list: [...{{ functions|json_encode | raw }}, ...{{ variables|json_encode | raw }}],
+                from: CodeMirror.Pos(cursor.line, start),
+                to: CodeMirror.Pos(cursor.line, end)
+            };
+        }
+        var editor = CodeMirror.fromTextArea(document.getElementById("form_conditionAlgorithm"), {
+            lineNumbers: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            lineWrapping: true,
+            mode: "javascript",
+            hintOptions: {hint}
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/5/addon/hint/show-hint.css">
+{% endblock %}

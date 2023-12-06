@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\FeatureFlag\Service;
 
+use App\Domain\DynamicAlgorithm\Enum\AlgorithmEvaluationContext;
 use App\Domain\FeatureFlag\Entity\FeatureFlag;
 use App\Domain\User\Entity\User;
 use App\Infrastructure\DynamicAlgorithm\Evaluator\SimpleAlgorithmEvaluator;
@@ -27,6 +28,7 @@ readonly class FeatureFlagService
         }
 
         return $this->algorithmEvaluator->evaluate(
+            AlgorithmEvaluationContext::FeatureFlag,
             $featureFlag->getConditionAlgorithm(),
             ['user' => $this->normalizer->normalize($user)]
         )->asBoolean();

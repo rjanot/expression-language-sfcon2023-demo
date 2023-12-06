@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" style="margin-bottom: 120px">
+        <div class="row">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Question label</th>
+                    <th>Actions</th>
+                </tr>
+                {% for question in questions %}
+                    <tr>
+                        <td class="col-3">
+                            {{ question.question }}
+                        </td>
+                        <td class="col-3">
+                            <a href="{{ path('question-edit', {id: question.id}) }}" class="btn btn-primary btn-sm">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
